@@ -3,11 +3,9 @@ var express   = require('express');
 var app       = express();
 
 var config = require('config');
-var Upload = require('s3-uploader');
-
 var formidable = require('formidable');
-//var util = require('util');
 
+var Upload = require('s3-uploader');
 var client = new Upload('bizzar-s3-upload', {
   aws: {
     accessKeyId: config.get('S3_ACCESS_KEY'),
