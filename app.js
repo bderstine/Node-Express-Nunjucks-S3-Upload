@@ -6,7 +6,7 @@ var config = require('config');
 var Upload = require('s3-uploader');
 
 var formidable = require('formidable');
-var util = require('util');
+//var util = require('util');
 
 var client = new Upload('bizzar-s3-upload', {
   aws: {
@@ -36,10 +36,12 @@ var client = new Upload('bizzar-s3-upload', {
     awsImageMaxAge: 31536000
   },{
     maxWidth: 780,
+    format: 'jpg',
     aspect: '3:2!h',
     suffix: '-medium'
   },{
     maxWidth: 320,
+    format: 'jpg',
     aspect: '16:9!h',
     suffix: '-small'
   },{
@@ -51,6 +53,7 @@ var client = new Upload('bizzar-s3-upload', {
     maxHeight: 250,
     maxWidth: 250,
     aspect: '1:1',
+    format: 'png',
     suffix: '-thumb2'
   }]
 });
@@ -98,7 +101,7 @@ app.post('/upload', function(req, res) {
       });
 
       res.contentType('text/plain');
-      res.send(util.inspect({fields: fields, files: files}));
+      res.send('File upload complete!');
   });
 
 });
